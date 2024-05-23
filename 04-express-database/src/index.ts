@@ -25,7 +25,7 @@ app.post('/sum', async ( req, res )=> {
     }
     const result = body.a + body.b;
 
-    await prisma.sum.create({
+    const dbCall = await prisma.sum.create({
         data: {
             a: body.a,
             b: body.b,
@@ -34,7 +34,8 @@ app.post('/sum', async ( req, res )=> {
     })
 
     res.json({
-        result
+        id: dbCall.id,
+        result: result
     })
 })
 
@@ -50,7 +51,7 @@ app.post('/subtract', async ( req, res )=> {
     }
     const result = body.a - body.b;
 
-    await prisma.subtract.create({
+    const dbCall = await prisma.subtract.create({
         data: {
             a: body.a,
             b: body.b,
@@ -59,7 +60,8 @@ app.post('/subtract', async ( req, res )=> {
     })
 
     res.json({
-        result
+        id: dbCall.id,
+        result: result
     })
 })
 
